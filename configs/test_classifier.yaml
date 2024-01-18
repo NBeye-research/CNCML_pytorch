@@ -1,0 +1,13 @@
+test_dataset: image-folder
+test_dataset_args: 
+    # root_path: './dataset/test'
+    test_data_path_arr: [ 
+    './dataset/test',
+    ]
+
+batch_size: 128
+
+
+#裂隙灯训练
+load: './convnext_base/classifier_image-folder_resnet50/epoch-10.pth'
+

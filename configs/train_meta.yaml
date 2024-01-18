@@ -1,0 +1,46 @@
+train_dataset: image-folder
+train_dataset_args:
+    root_path: ./dataset/smartphone/train
+    augment: True
+    # image_size: 299
+    # box_size: 320
+
+val_dataset: image-folder
+val_dataset_args:
+    root_path: ./dataset/smartphone/val
+    # image_size: 299
+    # box_size: 320
+
+model: cnclm
+model_args: 
+    # encoder: resnet50
+    # encoder: densenet121
+    # encoder: inception_v3
+    encoder: convnext_base
+    encoder_args: {pretrained: True}
+    method: cos
+    temp: 10.0
+    temp_learnable: True
+output: ./outputs
+
+#pretrain model load (feature extractor learning model)
+# load_encoder : ./outputs/convnext_base/classifier_image-folder_slitlamp_data_aug/epoch-30.pth
+
+freeze_bn: True
+
+# n_train_way : 3
+# n_train_shot : 5
+# n_train_query : 5
+
+n_way: 3
+n_shot: 5
+n_query: 5
+train_batches: 50
+val_batches: 50
+ep_per_batch: 4
+
+max_epoch: 50
+optimizer: sgd
+optimizer_args: {lr: 0.001, weight_decay: 1.e-4}
+
+visualize_datasets: True

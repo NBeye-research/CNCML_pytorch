@@ -1,0 +1,36 @@
+train_dataset: image-folder
+train_dataset_args: 
+    root_path:  ./dataset/train
+    augment: True
+    # image_size: 299
+    # box_size: 320
+
+val_dataset: image-folder
+val_dataset_args: 
+    root_path:  ./dataset/val
+    # image_size: 299
+    # box_size: 320
+
+
+eval_fs_epoch: 5
+output: ./outputs
+model: classifier
+model_args:
+    # encoder: resnet50
+    # encoder: densenet121
+    # encoder: inception_v3
+    encoder: convnext_base
+    encoder_args: {pretrained: True}
+    classifier: linear-classifier 
+    classifier_args: {n_classes: 3}
+
+batch_size: 64
+max_epoch: 100
+optimizer: sgd
+optimizer_args: {lr: 0.01, weight_decay: 1.e-4, milestones: [30, 60]}
+
+visualize_datasets: True
+freeze_classifier: False
+
+#pretrain model
+# load: './pretrain_model/im800-resnet50.pth'
