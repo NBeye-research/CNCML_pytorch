@@ -60,7 +60,7 @@ def main(config):
     for tmp_shot in n_shots:
         fs_sampler = CategoriesSampler(
                 dataset.label, n_batch, n_way, tmp_shot + n_query,
-                ep_per_batch=ep_per_batch)
+                ep_per_batch=ep_per_batch, isTest=True)
         fs_loader = DataLoader(dataset, batch_sampler=fs_sampler,
                                 num_workers=8, pin_memory=True)
         fs_loaders.append(fs_loader)
